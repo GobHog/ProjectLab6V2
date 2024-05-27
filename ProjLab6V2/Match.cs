@@ -49,22 +49,23 @@ namespace ProjLab6V2
                 new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 19, 170, 1000, 10000 }
             };
             var list_round = new List<Round>();
+            Random random = new Random();
             for (int i = 0; i < number_round; i++)
             {
                 //получение 20 рандомных чисел
-                Random random = new Random();
+                
                 List<int> numbers1 = new List<int>();
+                //добавление чисел от 1 до 80
                 for (int i1 = 1; i1 <= 80; i1++)
                 {
                     numbers1.Add(i1);
                 }
-
                 int[] uniqueRandomNumbers = new int[20];
                 for (int i1 = 0; i1 < 20; i1++)
                 {
-                    int randomIndex = random.Next(0, numbers1.Count);
+                    int randomIndex = random.Next(0, numbers1.Count()-1);
                     uniqueRandomNumbers[i1] = numbers1[randomIndex];
-                    numbers1.RemoveAt(randomIndex);
+                    numbers1.Remove(uniqueRandomNumbers[i1]);
                 }
                 //получение списка
                 List<int> list = list_spot.Where(x => x != 0).ToList();

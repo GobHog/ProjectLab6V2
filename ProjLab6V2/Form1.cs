@@ -9,8 +9,11 @@ using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
+using Timer = System.Timers.Timer;
 
 namespace ProjLab6V2
 {
@@ -18,15 +21,21 @@ namespace ProjLab6V2
     {
         Player player=new Player("User_");
         List<int> Spots = new List<int>();
-        public void clearSpots()
-        {
-            Spots.Clear();
-        }
+        List<Round> allRound;
+        int number_round;
         public void makeSpot(int spot)
         {
             if (Spots.Count < 15 && !Spots.Contains(spot)) Spots.Add(spot);
             else Spots.Remove(spot);
         }
+        public void updateDataGridView(SqlConnection connection)
+        {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT TOP 8 name, the_biggest_win FROM Players WHERE the_biggest_win>0 ORDER BY the_biggest_win DESC", connection.ConnectionString);
+            DataSet ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -73,12 +82,28 @@ namespace ProjLab6V2
                     SqlCommand command3 = new SqlCommand($"UPDATE Players SET the_biggest_win={int.Parse(label2.Text)} WHERE id={lastId}", connection);
                     command3.ExecuteNonQuery();
                 }
+                SqlCommand command6 = new SqlCommand("SELECT TOP 1 Id FROM Matchs ORDER BY Id DESC", connection);
+                // Выполнение команды и получение результата
+                int lastIdMatch = Convert.ToInt32(command6.ExecuteScalar());
+                
                 foreach (Round indexer in rounds)
                 {
-                    SqlCommand command5 = new SqlCommand($"INSERT INTO [Rounds] (balls, win_amount, match_id) VALUES (N'{string.Join(" ", indexer.balls)}', '{indexer.win_amount}', {lastId})", connection);
+                    SqlCommand command5 = new SqlCommand($"INSERT INTO [Rounds] (balls, win_amount, match_id) VALUES (N'{string.Join(" ", indexer.balls)}', '{indexer.win_amount}', {lastIdMatch})", connection);
                     command5.ExecuteNonQuery();
+                    
                 }
-                player.updateDataPlayer(int.Parse(label4.Text), win);//запросы через эту строку
+                number_round=rounds.Count;
+                allRound = rounds;
+                button81.Enabled = false;
+                button82.Enabled = false;
+                button_83.Enabled = false;
+                button84.Enabled = false;
+                button85.Enabled = false;
+                button_87.Enabled = false;
+                timer1.Start();
+                updateDataGridView(connection);
+                
+                //player.updateDataPlayer(int.Parse(label4.Text), win);//запросы через эту строку
             }
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -95,13 +120,11 @@ namespace ProjLab6V2
                 label7.Text = "Игрок : User_"+(lastId+1);
                 result= "User_"+(lastId+1).ToString();
             }
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT name, the_biggest_win FROM Players WHERE the_biggest_win>0", connection.ConnectionString);
-            DataSet ds = new DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
+            updateDataGridView(connection);
             SqlCommand command1 = new SqlCommand($"INSERT INTO [Players] (name, money_amount, the_biggest_win) VALUES (N'{result}', 1000, 0)", connection);
             player.name = result;
             command1.ExecuteNonQuery();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -519,7 +542,7 @@ namespace ProjLab6V2
 
         private void button87_Click(object sender, EventArgs e)
         {
-            clearSpots();
+            Spots.Clear();
             foreach (Control control in tableLayoutPanel1.Controls)
             {
                 if (control is Button) // Проверяем, что элемент управления типа Button
@@ -549,6 +572,45 @@ namespace ProjLab6V2
         private void button82_Click(object sender, EventArgs e)
         {
             if(int.Parse(textBox1.Text)>1) textBox1.Text = (int.Parse(textBox1.Text)-1).ToString();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (number_round == 0)
+            {
+                foreach (Control control in tableLayoutPanel1.Controls)
+                {
+                    Button button2 = (Button)control;
+                    button2.ForeColor = SystemColors.ControlText;
+                }
+                button81.Enabled = true;
+                button82.Enabled = true;
+                button_83.Enabled = true;
+                button84.Enabled = true;
+                button85.Enabled = true;
+                button_87.Enabled = true;
+                timer1.Stop();
+            }
+            else
+            {
+                number_round--;
+                var arr1 = allRound[number_round].balls;
+                foreach (Control control in tableLayoutPanel1.Controls)
+                {
+                    Button button2 = (Button)control;
+                    button2.ForeColor = SystemColors.ControlText;
+                }
+                foreach (Control control in tableLayoutPanel1.Controls)
+                {
+                    if (control is Button)
+                    {
+                        Button button1 = (Button)control;
+                        if (Array.IndexOf(arr1, int.Parse(button1.Text)) != -1)
+                            button1.ForeColor = Color.Magenta;
+                    }
+                }
+            }
+            
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button80 = new System.Windows.Forms.Button();
             this.button79 = new System.Windows.Forms.Button();
@@ -124,6 +125,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.button_87 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -1282,11 +1284,10 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(105, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 32);
+            this.label3.Size = new System.Drawing.Size(102, 32);
             this.label3.TabIndex = 6;
             this.label3.Text = "СЧЕТ";
             // 
@@ -1419,7 +1420,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(336, 324);
+            this.dataGridView1.Size = new System.Drawing.Size(327, 286);
             this.dataGridView1.TabIndex = 23;
             // 
             // label7
@@ -1443,6 +1444,11 @@
             this.button_87.Text = "ОЧИСТКА";
             this.button_87.UseVisualStyleBackColor = true;
             this.button_87.Click += new System.EventHandler(this.button87_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -1574,6 +1580,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button_87;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
