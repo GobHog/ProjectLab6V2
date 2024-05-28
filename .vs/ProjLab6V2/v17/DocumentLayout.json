@@ -3,18 +3,21 @@
   "WorkspaceRootPath": "D:\\rtippo\\ProjLab6V2\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6C24594E-1A73-45C5-A892-B496E8AB5081}|ProjLab6V2\\ProjLab6V2.csproj|D:\\rtippo\\ProjLab6V2\\projlab6v2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C24594E-1A73-45C5-A892-B496E8AB5081}|ProjLab6V2\\ProjLab6V2.csproj|solutionrelative:projlab6v2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__RTIPPO_PROJLAB6V2_PROJLAB6V2_DATABASEPLAYERS.MDF/True/SqlTable/dbo.Rounds.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C24594E-1A73-45C5-A892-B496E8AB5081}|ProjLab6V2\\ProjLab6V2.csproj|d:\\rtippo\\projlab6v2\\projlab6v2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C24594E-1A73-45C5-A892-B496E8AB5081}|ProjLab6V2\\ProjLab6V2.csproj|solutionrelative:projlab6v2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__RTIPPO_PROJLAB6V2_PROJLAB6V2_DATABASEPLAYERS.MDF/True/SqlTable/dbo.Matchs.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__RTIPPO_PROJLAB6V2_PROJLAB6V2_DATABASEPLAYERS.MDF/True/SqlTable/dbo.Players.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6C24594E-1A73-45C5-A892-B496E8AB5081}|ProjLab6V2\\ProjLab6V2.csproj|D:\\rtippo\\ProjLab6V2\\projlab6v2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{6C24594E-1A73-45C5-A892-B496E8AB5081}|ProjLab6V2\\ProjLab6V2.csproj|solutionrelative:projlab6v2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__RTIPPO_PROJLAB6V2_PROJLAB6V2_DATABASEPLAYERS.MDF/True/SqlTable/dbo.Matchs.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,7 +27,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 389,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -36,20 +39,30 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "dbo.Players [\u0414\u0430\u043D\u043D\u044B\u0435]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__RTIPPO_PROJLAB6V2_PROJLAB6V2_DATABASEPLAYERS.MDF/True/SqlTable/dbo.Players.sql",
+              "ToolTip": "dbo.Players [\u0414\u0430\u043D\u043D\u044B\u0435]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-05-28T17:55:07.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\rtippo\\ProjLab6V2\\ProjLab6V2\\Form1.cs",
               "RelativeDocumentMoniker": "ProjLab6V2\\Form1.cs",
               "ToolTip": "D:\\rtippo\\ProjLab6V2\\ProjLab6V2\\Form1.cs",
               "RelativeToolTip": "ProjLab6V2\\Form1.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAABgAAAAXAAAA",
+              "ViewState": "AQIAADwCAAAAAAAAAAAAABkAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-21T05:01:43.926Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "D:\\rtippo\\ProjLab6V2\\ProjLab6V2\\Form1.cs",
               "RelativeDocumentMoniker": "ProjLab6V2\\Form1.cs",
@@ -61,7 +74,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "dbo.Rounds [\u0414\u0430\u043D\u043D\u044B\u0435]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__RTIPPO_PROJLAB6V2_PROJLAB6V2_DATABASEPLAYERS.MDF/True/SqlTable/dbo.Rounds.sql",
               "ToolTip": "dbo.Rounds [\u0414\u0430\u043D\u043D\u044B\u0435]",
@@ -71,12 +84,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "dbo.Matchs [\u0414\u0430\u043D\u043D\u044B\u0435]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__RTIPPO_PROJLAB6V2_PROJLAB6V2_DATABASEPLAYERS.MDF/True/SqlTable/dbo.Matchs.sql",
               "ToolTip": "dbo.Matchs [\u0414\u0430\u043D\u043D\u044B\u0435]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-05-26T07:41:40.784Z"
+              "WhenOpened": "2024-05-26T07:41:40.784Z",
+              "EditorCaption": ""
             }
           ]
         }

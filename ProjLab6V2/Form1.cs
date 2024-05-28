@@ -23,7 +23,7 @@ namespace ProjLab6V2
         List<int> Spots = new List<int>();
         List<Round> allRound;
         int number_round;
-        int win_amount;
+        SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = D:\rtippo\ProjLab6V2\ProjLab6V2\DatabasePlayers.mdf; Integrated Security = True");
         public void makeSpot(int spot)
         {
             if (Spots.Count < 15 && !Spots.Contains(spot)) Spots.Add(spot);
@@ -59,27 +59,28 @@ namespace ProjLab6V2
             var res1 = int.Parse(new string(res));
             if (Spots.Count() != 0)
             {
-                var connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = D:\rtippo\ProjLab6V2\ProjLab6V2\DatabasePlayers.mdf; Integrated Security = True");
+                
                 connection.Open();
                 var match = player.makeMatch(int.Parse(textBox1.Text), res1, Spots.ToArray());
                 var spots = string.Join(" ", Spots);
                 SqlCommand command = new SqlCommand("SELECT TOP 1 Id FROM Players ORDER BY Id DESC", connection);
                 // Выполнение команды и получение результата
                 int lastId = Convert.ToInt32(command.ExecuteScalar());
-                SqlCommand command1 = new SqlCommand($"INSERT INTO [Matchs] (bet, number_round, list_spot, player_id) VALUES ({int.Parse(textBox1.Text)}, 1, N'{spots}', {lastId})", connection);
+                SqlCommand command1 = new SqlCommand($"INSERT INTO [Matchs] (bet, number_round, list_spot, player_id) VALUES ({int.Parse(textBox1.Text)}, {res1}, N'{spots}', {lastId})", connection);
                 command1.ExecuteNonQuery();
                 var rounds = match.makeRound(int.Parse(textBox1.Text), res1, Spots.ToArray());
                 var win = 0;
                 for (int i = 0; rounds.Count > i; i++) win += rounds[i].win_amount;
-                label4.Text = (int.Parse(label4.Text) + int.Parse(label2.Text) - int.Parse(textBox1.Text)*res1).ToString();
-                SqlCommand command2 = new SqlCommand($"UPDATE Players SET money_amount={label4.Text} WHERE id={lastId}", connection);
+                win*=int.Parse(textBox1.Text);
+                label4.Text = (int.Parse(label4.Text) - int.Parse(textBox1.Text)*res1).ToString();
+                SqlCommand command2 = new SqlCommand($"UPDATE Players SET money_amount={int.Parse(label4.Text)+win} WHERE id={lastId}", connection);
                 command2.ExecuteNonQuery();
                 SqlCommand command4 = new SqlCommand("SELECT TOP 1 the_biggest_win FROM Players ORDER BY Id DESC", connection);
                 // Выполнение команды и получение результата
                 int last_the_biggest_win = Convert.ToInt32(command4.ExecuteScalar());
                 if (last_the_biggest_win < win)
                 {
-                    SqlCommand command3 = new SqlCommand($"UPDATE Players SET the_biggest_win={int.Parse(label2.Text)} WHERE id={lastId}", connection);
+                    SqlCommand command3 = new SqlCommand($"UPDATE Players SET the_biggest_win={win} WHERE id={lastId}", connection);
                     command3.ExecuteNonQuery();
                 }
                 SqlCommand command6 = new SqlCommand("SELECT TOP 1 Id FROM Matchs ORDER BY Id DESC", connection);
@@ -88,7 +89,7 @@ namespace ProjLab6V2
                 
                 foreach (Round indexer in rounds)
                 {
-                    SqlCommand command5 = new SqlCommand($"INSERT INTO [Rounds] (balls, win_amount, match_id) VALUES (N'{string.Join(" ", indexer.balls)}', '{indexer.win_amount}', {lastIdMatch})", connection);
+                    SqlCommand command5 = new SqlCommand($"INSERT INTO [Rounds] (balls, win_amount, match_id) VALUES (N'{string.Join(" ", indexer.balls)}', '{indexer.win_amount*int.Parse(textBox1.Text)}', {lastIdMatch})", connection);
                     command5.ExecuteNonQuery();
                     
                 }
@@ -102,8 +103,7 @@ namespace ProjLab6V2
                 button85.Enabled = false;
                 button_87.Enabled = false;
                 timer1.Start();
-                updateDataGridView(connection);
-                //player.updateDataPlayer(int.Parse(label4.Text), win);//запросы через эту строку
+                
             }
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -589,6 +589,8 @@ namespace ProjLab6V2
                 button84.Enabled = true;
                 button85.Enabled = true;
                 button_87.Enabled = true;
+                label4.Text = (int.Parse(label4.Text) + int.Parse(label2.Text)).ToString();
+                updateDataGridView(connection);
                 timer1.Stop();
             }
             else
@@ -610,7 +612,7 @@ namespace ProjLab6V2
                             button1.ForeColor = Color.Magenta;
                     }
                 }
-                label2.Text = (int.Parse(label2.Text) + allRound[number_round].win_amount).ToString();
+                label2.Text = (int.Parse(label2.Text) + allRound[number_round].win_amount*int.Parse(textBox1.Text)).ToString();
             }
             
         }
