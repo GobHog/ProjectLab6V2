@@ -23,6 +23,7 @@ namespace ProjLab6V2
         List<int> Spots = new List<int>();
         List<Round> allRound;
         int number_round;
+        int win_amount;
         public void makeSpot(int spot)
         {
             if (Spots.Count < 15 && !Spots.Contains(spot)) Spots.Add(spot);
@@ -46,7 +47,7 @@ namespace ProjLab6V2
             Button button = sender as Button;
             string num = button.Text;
             makeSpot(int.Parse(num));
-            if (button.BackColor == SystemColors.Control) button.BackColor = Color.Green;
+            if (button.BackColor == SystemColors.Control) button.BackColor = Color.PaleGreen;
                 else button.BackColor = SystemColors.Control;
             //label3.Text = player.Spots.Count().ToString();
         }
@@ -70,7 +71,6 @@ namespace ProjLab6V2
                 var rounds = match.makeRound(int.Parse(textBox1.Text), res1, Spots.ToArray());
                 var win = 0;
                 for (int i = 0; rounds.Count > i; i++) win += rounds[i].win_amount;
-                label2.Text = win.ToString();
                 label4.Text = (int.Parse(label4.Text) + int.Parse(label2.Text) - int.Parse(textBox1.Text)*res1).ToString();
                 SqlCommand command2 = new SqlCommand($"UPDATE Players SET money_amount={label4.Text} WHERE id={lastId}", connection);
                 command2.ExecuteNonQuery();
@@ -94,6 +94,7 @@ namespace ProjLab6V2
                 }
                 number_round=rounds.Count;
                 allRound = rounds;
+                label2.Text = "0";
                 button81.Enabled = false;
                 button82.Enabled = false;
                 button_83.Enabled = false;
@@ -102,7 +103,6 @@ namespace ProjLab6V2
                 button_87.Enabled = false;
                 timer1.Start();
                 updateDataGridView(connection);
-                
                 //player.updateDataPlayer(int.Parse(label4.Text), win);//запросы через эту строку
             }
         }
@@ -595,6 +595,7 @@ namespace ProjLab6V2
             {
                 number_round--;
                 var arr1 = allRound[number_round].balls;
+                
                 foreach (Control control in tableLayoutPanel1.Controls)
                 {
                     Button button2 = (Button)control;
@@ -609,6 +610,7 @@ namespace ProjLab6V2
                             button1.ForeColor = Color.Magenta;
                     }
                 }
+                label2.Text = (int.Parse(label2.Text) + allRound[number_round].win_amount).ToString();
             }
             
         }
