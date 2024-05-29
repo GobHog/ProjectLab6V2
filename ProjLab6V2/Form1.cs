@@ -102,7 +102,7 @@ namespace ProjLab6V2
                 button85.Enabled = false;
                 button_87.Enabled = false;
                 timer1.Start();
-                
+                connection.Close();
             }
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace ProjLab6V2
             SqlCommand command1 = new SqlCommand($"INSERT INTO [Players] (name, money_amount, the_biggest_win) VALUES (N'{result}', 1000, 0)", connection);
             player.name = result;
             command1.ExecuteNonQuery();
-            
+            connection.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
