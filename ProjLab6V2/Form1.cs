@@ -57,7 +57,7 @@ namespace ProjLab6V2
             string name = button.Text;
             var res = name.ToCharArray().Where(n => char.IsDigit(n)).ToArray();
             var res1 = int.Parse(new string(res));
-            if (Spots.Count() != 0)
+            if (Spots.Count() != 0 && int.Parse(label4.Text)>int.Parse(textBox1.Text)*res1)
             {
                 
                 connection.Open();
