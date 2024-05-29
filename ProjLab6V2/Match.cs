@@ -34,7 +34,7 @@ namespace ProjLab6V2
             int[][] numbers = {
                 new int[1] { 3 },
                 new int[2] { 1, 9 },
-                new int[3] { 1, 2, 15 },
+                new int[3] { 0, 1, 15 },
                 new int[4] { 0, 1, 3, 25 },
                 new int[5] { 0, 1, 4, 22, 100 },
                 new int[6] { 0, 0, 3, 4, 70, 250 },

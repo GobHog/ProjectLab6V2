@@ -71,7 +71,6 @@ namespace ProjLab6V2
                 var rounds = match.makeRound(int.Parse(textBox1.Text), res1, Spots.ToArray());
                 var win = 0;
                 for (int i = 0; rounds.Count > i; i++) win += rounds[i].win_amount;
-                win*=int.Parse(textBox1.Text);
                 label4.Text = (int.Parse(label4.Text) - int.Parse(textBox1.Text)*res1).ToString();
                 SqlCommand command2 = new SqlCommand($"UPDATE Players SET money_amount={int.Parse(label4.Text)+win} WHERE id={lastId}", connection);
                 command2.ExecuteNonQuery();
@@ -89,7 +88,7 @@ namespace ProjLab6V2
                 
                 foreach (Round indexer in rounds)
                 {
-                    SqlCommand command5 = new SqlCommand($"INSERT INTO [Rounds] (balls, win_amount, match_id) VALUES (N'{string.Join(" ", indexer.balls)}', '{indexer.win_amount*int.Parse(textBox1.Text)}', {lastIdMatch})", connection);
+                    SqlCommand command5 = new SqlCommand($"INSERT INTO [Rounds] (balls, win_amount, match_id) VALUES (N'{string.Join(" ", indexer.balls)}', '{indexer.win_amount}', {lastIdMatch})", connection);
                     command5.ExecuteNonQuery();
                     
                 }
@@ -612,7 +611,7 @@ namespace ProjLab6V2
                             button1.ForeColor = Color.Magenta;
                     }
                 }
-                label2.Text = (int.Parse(label2.Text) + allRound[number_round].win_amount*int.Parse(textBox1.Text)).ToString();
+                label2.Text = (int.Parse(label2.Text) + allRound[number_round].win_amount).ToString();
             }
             
         }
